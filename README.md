@@ -7,7 +7,7 @@ Example: `contract.pdf` → `Other/2026-10-02_contract.pdf`
 ## How it works
 
 1. Reads the text of every page of each PDF (`pypdf`).
-2. Sends the text to a local model (`qwen3.5:4b` via Ollama) and asks: CV, Attestation, Bill or Other?
+2. Sends the text to a local model (`qwen3.5:4b` via Ollama) and asks: CV, Attestation, Bill, Contract, Form or Other?
 3. Safety net: if the answer isn't exactly one of those words, the file goes to `Unsure`.
 4. Adds the file's **Date modified** (from Windows) to the start of the name.
 5. Creates the category folder and moves the file.
@@ -40,7 +40,7 @@ qwen's date answers are still printed on screen as a suggestion, so I can compar
 
 ## Known limitations
 
-- Most documents end up in `Other`: only 4 categories so far.
+- Some documents may land in the wrong category but consistently (e.g. a summary document and a logbook went to `Form` every run). Asking twice can't catch this; checking by hand can.
 - Some answers change from run to run (small model).
 - Scanned PDFs (pictures, no text) aren't supported yet.
 - Slow: about 3 AI calls per file.
