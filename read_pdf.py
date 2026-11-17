@@ -15,7 +15,7 @@ def read_text(file):
 def classify(file):
     text = read_text(file)
 
-    instruction = "What type of document is this? Answer with one word only: CV, Attestation, Bill, or Other."
+    instruction = "What type of document is this? Answer with one word only: CV, Attestation, Bill, Contract, Form, or Other."
     prompt = "Document: " + text + " " + instruction
 
     response = ollama.chat(
@@ -25,7 +25,7 @@ def classify(file):
     )
     print(response.message.content)
 
-    categories = ["CV", "Attestation", "Bill", "Other"]
+    categories = ["CV", "Attestation", "Bill", "Contract", "Form", "Other"]
     answer = response.message.content.strip()
 
     if answer in categories:
