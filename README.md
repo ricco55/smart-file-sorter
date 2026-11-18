@@ -40,4 +40,5 @@ qwen's date answers are still printed on screen as a suggestion, so I can compar
 
 ## Known limitations
 
-- **Tested on 9 PDFs: 7/9 correct.** Both mistakes went to `Form`, on every run: Document_de_Synthese is really an Attestation, and Training Logbook should be `Other`. Documents with fields and labels look like forms to a small model. Asking twice can't catch this (consistent ≠ correct); checking by hand can.
+- **Tested on 9 PDFs: 8 correct, 1 Unsure, 0 wrong.** Each file is classified twice; if the answers differ, it goes to `Unsure` for a human to check. Document_de_Synthese (an Attestation) is too hard for a 4b model: across runs it got Form, Attestation and Other. A file can still be wrong if the model gives the same wrong answer twice.
+- Slow: about 4 AI calls per file (category twice, date twice).
