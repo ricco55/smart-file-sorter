@@ -15,7 +15,7 @@ def read_text(file):
 def classify(file):
     text = read_text(file)
 
-    instruction = "What type of document is this? Answer with one word only: CV, Attestation, Bill, Contract, Form, or Other."
+    instruction = "What type of document is this? CV = a person's career summary. Attestation = certifies a fact about a person. Bill = asks for payment. Contract = an agreement between parties. Form = an official application or request with fields to fill in. Other = anything else. Answer with one word only: CV, Attestation, Bill, Contract, Form, or Other."
     prompt = "Document: " + text + " " + instruction
 
     response = ollama.chat(
@@ -52,7 +52,12 @@ for name in names:
     if not name.endswith(".pdf"):
         continue
     full_path = folder_path + "/" + name
-    folder = classify(full_path)
+    folder_1 = classify(full_path)
+    folder_2 = classify(full_path)
+    if folder_1 == folder_2:
+        folder = folder_1
+    else:
+        folder = "Unsure"
     category_folder = folder_path + "/" + folder
     os.makedirs(category_folder, exist_ok=True)
     seconds = os.path.getmtime(full_path)
