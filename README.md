@@ -40,7 +40,4 @@ qwen's date answers are still printed on screen as a suggestion, so I can compar
 
 ## Known limitations
 
-- Some documents may land in the wrong category but consistently (e.g. a summary document and a logbook went to `Form` every run). Asking twice can't catch this; checking by hand can.
-- Some answers change from run to run (small model).
-- Scanned PDFs (pictures, no text) aren't supported yet.
-- Slow: about 3 AI calls per file.
+- **Tested on 9 PDFs: 7/9 correct.** Both mistakes went to `Form`, on every run: Document_de_Synthese is really an Attestation, and Training Logbook should be `Other`. Documents with fields and labels look like forms to a small model. Asking twice can't catch this (consistent ≠ correct); checking by hand can.
